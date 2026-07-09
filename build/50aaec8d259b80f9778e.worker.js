@@ -1,1 +1,1322 @@
-!function(t){function n(o){if(r[o])return r[o].exports;var e=r[o]={exports:{},id:o,loaded:!1};return t[o].call(e.exports,e,e.exports,n),e.loaded=!0,e.exports}var r={};return n.m=t,n.c=r,n.p="/build/",n(0)}([function(t,n,r){var o=r(1);r(3),self.addEventListener("message",function(t){if("solve"===t.data.name){var n=t.data.state,r={};"ULFRBD".split("").forEach(function(t,o){r[t]=n.substring(9*o,9*(o+1))});var e={};Object.keys(r).forEach(function(t){e[r[t][4]]=t}),Object.keys(r).forEach(function(t){r[t]=r[t].split("").map(function(t){return t in e?e[t]:t}).join("")});var i="URFDLB".split("").map(function(t){return r[t]}).join(""),s=o.fromString(i).solve();self.postMessage({name:"solved",state:n,alg:s})}}),o.initSolver(),self.postMessage({name:"ready"})},function(t,n,r){(function(t){(function(){var n,r,o,e,i,s,u,f,l,h,p,c,a,v,F,R,U,m,g,D,y,d,B,w,L,b,M,T;b=[0,1,2,3,4,5,6,7],y=b[0],U=b[1],g=b[2],F=b[3],u=b[4],l=b[5],i=b[6],p=b[7],M=[0,1,2,3,4,5,6,7,8,9,10,11],D=M[0],R=M[1],m=M[2],v=M[3],h=M[4],s=M[5],f=M[6],e=M[7],a=M[8],c=M[9],n=M[10],r=M[11],T=function(){var t,n,r,o,e,i;return i=function(t){return t-1},e=function(t){return i(9)+t},r=function(t){return e(9)+t},n=function(t){return r(9)+t},o=function(t){return n(9)+t},t=function(t){return o(9)+t},[[[i(9),e(1),r(3)],[i(7),r(1),o(3)],[i(1),o(1),t(3)],[i(3),t(1),e(3)],[n(3),r(9),e(7)],[n(1),o(9),r(7)],[n(7),t(9),o(7)],[n(9),e(9),t(7)]],[[i(6),e(2)],[i(8),r(2)],[i(4),o(2)],[i(2),t(2)],[n(6),e(8)],[n(2),r(8)],[n(4),o(8)],[n(8),t(8)],[r(6),e(4)],[r(4),o(6)],[t(6),o(4)],[t(4),e(6)]]]}(),B=T[0],L=T[1],d=[["U","R","F"],["U","F","L"],["U","L","B"],["U","B","R"],["D","F","R"],["D","L","F"],["D","B","L"],["D","R","B"]],w=[["U","R"],["U","F"],["U","L"],["U","B"],["D","R"],["D","F"],["D","L"],["D","B"],["F","R"],["F","L"],["B","L"],["B","R"]],o=function(){function t(t){var n;null!=t?this.init(t):this.identity(),this.newCp=function(){var t,r;for(r=[],n=t=0;7>=t;n=++t)r.push(0);return r}(),this.newEp=function(){var t,r;for(r=[],n=t=0;11>=t;n=++t)r.push(0);return r}(),this.newCo=function(){var t,r;for(r=[],n=t=0;7>=t;n=++t)r.push(0);return r}(),this.newEo=function(){var t,r;for(r=[],n=t=0;11>=t;n=++t)r.push(0);return r}()}var o,b,M;return t.prototype.init=function(t){return this.cp=t.cp.slice(0),this.co=t.co.slice(0),this.ep=t.ep.slice(0),this.eo=t.eo.slice(0)},t.prototype.identity=function(){var t;return this.cp=[0,1,2,3,4,5,6,7],this.co=function(){var n,r;for(r=[],t=n=0;7>=n;t=++n)r.push(0);return r}(),this.ep=[0,1,2,3,4,5,6,7,8,9,10,11],this.eo=function(){var n,r;for(r=[],t=n=0;11>=n;t=++n)r.push(0);return r}()},t.prototype.toJSON=function(){return{cp:this.cp,co:this.co,ep:this.ep,eo:this.eo}},t.prototype.asString=function(){var t,n,r,o,e,i,s,u,f,l,h,p,c,a,v;for(v=[],c=[[4,"U"],[13,"R"],[22,"F"],[31,"D"],[40,"L"],[49,"B"]],e=0,s=c.length;s>e;e++)a=c[e],o=a[0],t=a[1],v[o]=t;for(o=i=0;7>=i;o=++i)for(n=this.cp[o],h=this.co[o],f=u=0;2>=u;f=++u)v[B[o][(f+h)%3]]=d[n][f];for(o=l=0;11>=l;o=++l)for(r=this.ep[o],h=this.eo[o],f=p=0;1>=p;f=++p)v[L[o][(f+h)%2]]=w[r][f];return v.join("")},t.fromString=function(n){var r,o,e,i,s,u,f,l,h,p,c,a;for(e=new t,i=u=0;7>=u;i=++u){for(p=f=0;2>=f&&("U"!==(a=n[B[i][p]])&&"D"!==a);p=++f);for(r=n[B[i][(p+1)%3]],o=n[B[i][(p+2)%3]],s=l=0;7>=l;s=++l)r===d[s][1]&&o===d[s][2]&&(e.cp[i]=s,e.co[i]=p%3)}for(i=h=0;11>=h;i=++h)for(s=c=0;11>=c;s=++c){if(n[L[i][0]]===w[s][0]&&n[L[i][1]]===w[s][1]){e.ep[i]=s,e.eo[i]=0;break}if(n[L[i][0]]===w[s][1]&&n[L[i][1]]===w[s][0]){e.ep[i]=s,e.eo[i]=1;break}}return e},t.prototype.clone=function(){return new t(this.toJSON())},t.prototype.randomize=function(){var t,n,r,o;return r=function(t,n){return t+(Math.random()*(n-t+1)|0)},t=function(t){var n,o,e,i,s,u,f,l;for(e=t.length-1,l=[],n=o=0,s=e-2;s>=0?s>=o:o>=s;n=s>=0?++o:--o)i=r(n,e),n!==i?(u=[t[i],t[n]],t[n]=u[0],t[i]=u[1],l.push((f=[t[e-1],t[e]],t[e]=f[0],t[e-1]=f[1],f))):l.push(void 0);return l},n=function(t,n){var o,e,i,s;for(i=0,o=e=0,s=t.length-2;s>=0?s>=e:e>=s;o=s>=0?++e:--e)i+=t[o]=r(0,n-1);return t[t.length-1]=(n-i%n)%n},o=function(){return t(this.cp),t(this.ep),n(this.co,3),n(this.eo,2),this}}(),t.random=function(){return(new t).randomize()},t.prototype.isSolved=function(){var t,n,r,o;for(t=r=0;7>=r;t=++r){if(this.cp[t]!==t)return!1;if(0!==this.co[t])return!1}for(n=o=0;11>=o;n=++o){if(this.ep[n]!==n)return!1;if(0!==this.eo[n])return!1}return!0},t.prototype.cornerMultiply=function(t){var n,r,o,e,i;for(i=r=0;7>=r;i=++r)n=t.cp[i],this.newCp[i]=this.cp[n],this.newCo[i]=(this.co[n]+t.co[i])%3;return o=[this.newCp,this.cp],this.cp=o[0],this.newCp=o[1],e=[this.newCo,this.co],this.co=e[0],this.newCo=e[1],this},t.prototype.edgeMultiply=function(t){var n,r,o,e,i;for(i=r=0;11>=r;i=++r)n=t.ep[i],this.newEp[i]=this.ep[n],this.newEo[i]=(this.eo[n]+t.eo[i])%2;return o=[this.newEp,this.ep],this.ep=o[0],this.newEp=o[1],e=[this.newEo,this.eo],this.eo=e[0],this.newEo=e[1],this},t.prototype.multiply=function(t){return this.cornerMultiply(t),this.edgeMultiply(t),this},t.moves=[{cp:[F,y,U,g,u,l,i,p],co:[0,0,0,0,0,0,0,0],ep:[v,D,R,m,h,s,f,e,a,c,n,r],eo:[0,0,0,0,0,0,0,0,0,0,0,0]},{cp:[u,U,g,y,p,l,i,F],co:[2,0,0,1,1,0,0,2],ep:[a,R,m,v,r,s,f,e,h,c,n,D],eo:[0,0,0,0,0,0,0,0,0,0,0,0]},{cp:[U,l,g,F,y,u,i,p],co:[1,2,0,0,2,1,0,0],ep:[D,c,m,v,h,a,f,e,R,s,n,r],eo:[0,1,0,0,0,1,0,0,1,1,0,0]},{cp:[y,U,g,F,l,i,p,u],co:[0,0,0,0,0,0,0,0],ep:[D,R,m,v,s,f,e,h,a,c,n,r],eo:[0,0,0,0,0,0,0,0,0,0,0,0]},{cp:[y,g,i,F,u,U,l,p],co:[0,1,2,0,0,2,1,0],ep:[D,R,n,v,h,s,c,e,a,m,f,r],eo:[0,0,0,0,0,0,0,0,0,0,0,0]},{cp:[y,U,F,p,u,l,g,i],co:[0,0,1,2,0,0,2,1],ep:[D,R,m,r,h,s,f,n,a,c,v,e],eo:[0,0,0,1,0,0,0,1,0,0,1,1]}],b={U:0,R:1,F:2,D:3,L:4,B:5},o={0:"U",1:"R",2:"F",3:"D",4:"L",5:"B"},M=function(t){var n,r,o,e,i,s,u;if("string"==typeof t){for(s=t.split(/\s+/),u=[],n=0,r=s.length;r>n;n++)if(e=s[n],0!==e.length){if(e.length>2)throw"Invalid move: "+e;if(o=b[e[0]],void 0===o)throw"Invalid move: "+e;if(1===e.length)i=0;else if("2"===e[1])i=1;else{if("'"!==e[1])throw"Invalid move: "+e;i=2}u.push(3*o+i)}return u}return null!=t.length?t:[t]},t.prototype.move=function(n){var r,o,e,i,s,u,f,l,h;for(f=M(n),o=0,i=f.length;i>o;o++)for(s=f[o],r=s/3|0,u=s%3,h=e=0,l=u;l>=0?l>=e:e>=l;h=l>=0?++e:--e)this.multiply(t.moves[r]);return this},t.inverse=function(t){var n,r,e,i,s,u,f;if(u=function(){var r,o,e,u;for(e=M(t),u=[],r=0,o=e.length;o>r;r++)i=e[r],n=i/3|0,s=i%3,u.push(3*n+-(s-1)+1);return u}(),u.reverse(),"string"==typeof t){for(f="",r=0,e=u.length;e>r;r++)i=u[r],n=i/3|0,s=i%3,f+=o[n],1===s?f+="2":2===s&&(f+="'"),f+=" ";return f.substring(0,f.length-1)}return null!=t.length?u:u[0]},t}(),"undefined"!=typeof t&&null!==t?t.exports=o:this.Cube=o}).call(this)}).call(n,r(2)(t))},function(t,n){t.exports=function(t){return t.webpackPolyfill||(t.deprecate=function(){},t.paths=[],t.children=[],t.webpackPolyfill=1),t}},function(t,n,r){(function(){var t,n,o,e,i,s,u,f,l,h,p,c,a,v,F,R,U,m,g,D,y,d,B,w,L,b,M,T,P,x,E,C,S,k,j,O,I,z,J,N,q,A,G,H,K,Q,V,W,X,Y,Z,$,_=[].slice,tt=[].indexOf||function(t){for(var n=0,r=this.length;r>n;n++)if(n in this&&this[n]===t)return n;return-1};e=this.Cube||r(1),W=[0,1,2,3,4,5,6,7],S=W[0],P=W[1],E=W[2],M=W[3],f=W[4],h=W[5],s=W[6],c=W[7],X=[0,1,2,3,4,5,6,7,8,9,10,11],C=X[0],T=X[1],x=X[2],b=X[3],p=X[4],u=X[5],l=X[6],i=X[7],v=X[8],a=X[9],t=X[10],n=X[11],o=function(t,n){var r,o,e;if(n>t)return 0;for(n>t/2&&(n=t-n),e=1,r=t,o=1;r!==t-n;)e*=r,e/=o,r--,o++;return e},z=function(t){var n,r,o,e;for(n=1,r=o=2,e=t;e>=2?e>=o:o>=e;r=e>=2?++o:--o)n*=r;return n},N=function(t,n){return t>n?t:n},Y=function(t,n,r){var o,e,i,s,u;for(u=t[n],o=e=i=n,s=r-1;s>=i?s>=e:e>=s;o=s>=i?++e:--e)t[o]=t[o+1];return t[r]=u},Z=function(t,n,r){var o,e,i,s,u;for(u=t[r],o=e=i=r,s=n+1;s>=i?s>=e:e>=s;o=s>=i?++e:--e)t[o]=t[o-1];return t[n]=u},K=function(t,n,r,e){var i,s,u,f,l,h;return null==e&&(e=!1),f=r-n,u=z(f+1),"corners"===t?(s=7,h="cp"):(s=11,h="ep"),l=function(){var t,n,r;for(r=[],i=t=0,n=f;n>=0?n>=t:t>=n;i=n>=0?++t:--t)r.push(0);return r}(),function(t){var p,c,a,v,F,R,U,m,g,D,y,d,B,w,L,b,M,T,P,x,E,C,S,k,j,O,I;if(null!=t){for(i=R=0,w=f;w>=0?w>=R:R>=w;i=w>=0?++R:--R)l[i]=i+n;for(c=t%u,p=t/u|0,g=this[h],i=U=0,L=s;L>=0?L>=U:U>=L;i=L>=0?++U:--U)g[i]=-1;for(v=m=1,b=f;b>=1?b>=m:m>=b;v=b>=1?++m:--m)for(F=c%(v+1),c=c/(v+1)|0;F>0;)Z(l,0,v),F--;if(j=f,e)for(v=D=0,M=s;M>=0?M>=D:D>=M;v=M>=0?++D:--D)a=o(s-v,j+1),p-a>=0&&(g[v]=l[f-j],p-=a,j--);else for(v=C=T=s;0>=T?0>=C:C>=0;v=0>=T?++C:--C)a=o(v,j+1),p-a>=0&&(g[v]=l[j],p-=a,j--);return this}for(g=this[h],i=S=0,P=f;P>=0?P>=S:S>=P;i=P>=0?++S:--S)l[i]=-1;if(p=c=j=0,e)for(v=k=x=s;0>=x?0>=k:k>=0;v=0>=x?++k:--k)n<=(E=g[v])&&r>=E&&(p+=o(s-v,j+1),l[f-j]=g[v],j++);else for(v=O=0,y=s;y>=0?y>=O:O>=y;v=y>=0?++O:--O)n<=(d=g[v])&&r>=d&&(p+=o(v,j+1),l[j]=g[v],j++);for(v=I=B=f;0>=B?0>=I:I>=0;v=0>=B?++I:--I){for(F=0;l[v]!==n+v;)Y(l,0,v),F++;c=(v+1)*c+F}return p*u+c}},F={twist:function(t){var n,r,o,e,i,s;if(null!=t){for(i=0,n=r=6;r>=0;n=--r)e=t%3,t=t/3|0,this.co[n]=e,i+=e;return this.co[7]=(3-i%3)%3,this}for(s=0,n=o=0;6>=o;n=++o)s=3*s+this.co[n];return s},flip:function(t){var n,r,o,e,i,s;if(null!=t){for(i=0,n=r=10;r>=0;n=--r)e=t%2,t=t/2|0,this.eo[n]=e,i+=e;return this.eo[11]=(2-i%2)%2,this}for(s=0,n=o=0;10>=o;n=++o)s=2*s+this.eo[n];return s},cornerParity:function(){var t,n,r,o,e,i,s,u,f;for(f=0,t=r=e=c,i=S+1;i>=e?i>=r:r>=i;t=i>=e?++r:--r)for(n=o=s=t-1,u=S;u>=s?u>=o:o>=u;n=u>=s?++o:--o)this.cp[n]>this.cp[t]&&f++;return f%2},edgeParity:function(){var t,r,o,e,i,s,u,f,l;for(l=0,t=o=i=n,s=C+1;s>=i?s>=o:o>=s;t=s>=i?++o:--o)for(r=e=u=t-1,f=C;f>=u?f>=e:e>=f;r=f>=u?++e:--e)this.ep[r]>this.ep[t]&&l++;return l%2},URFtoDLF:K("corners",S,h),URtoUL:K("edges",C,x),UBtoDF:K("edges",b,u),URtoDF:K("edges",C,u),FRtoBR:K("edges",v,n,!0)};for(J in F)$=F[J],e.prototype[J]=$;O=function(t,n,r){var o,i,s,u,f,l,h,p,c,a,v,F;for(o="corners"===t?"cornerMultiply":"edgeMultiply",i=new e,F=[],s=h=0,v=r-1;v>=0?v>=h:h>=v;s=v>=0?++h:--h){for(i[n](s),u=[],f=c=0;5>=c;f=++c){for(p=e.moves[f],l=a=0;2>=a;l=++a)i[o](p),u.push(i[n]());i[o](p)}F.push(u)}return F},q=function(){var t,n;return t=new e,n=new e,function(r,o){var e,i;for(t.URtoUL(r),n.UBtoDF(o),e=i=0;7>=i;e=++i)if(-1!==t.ep[e]){if(-1!==n.ep[e])return-1;n.ep[e]=t.ep[e]}return n.URtoDF()}}(),y=2187,R=2048,m=2,U=11880,g=495,D=24,B=20160,w=20160,L=1320,d=1320,e.moveTables={parity:[[1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1],[0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0]],twist:null,flip:null,FRtoBR:null,URFtoDLF:null,URtoDF:null,URtoUL:null,UBtoDF:null,mergeURtoDF:null},A={twist:["corners",y],flip:["edges",R],FRtoBR:["edges",U],URFtoDLF:["corners",B],URtoDF:["edges",w],URtoUL:["edges",L],UBtoDF:["edges",d],mergeURtoDF:[]},e.computeMoveTables=function(){var t,n,r,o,e,i,s,u;for(u=1<=arguments.length?_.call(arguments,0):[],0===u.length&&(u=function(){var t;t=[];for(r in A)t.push(r);return t}()),n=0,t=u.length;t>n;n++)s=u[n],null===this.moveTables[s]&&("mergeURtoDF"===s?this.moveTables.mergeURtoDF=function(){var t,n,r,o;for(o=[],n=r=0;335>=r;n=++r)o.push(function(){var r,o;for(o=[],t=r=0;335>=r;t=++r)o.push(q(n,t));return o}());return o}():(o=A[s],e=o[0],i=o[1],this.moveTables[s]=O(e,s,i)));return this},k=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],G=function(){var t,n,r,o,e,i,s,u;for(u=[],n=r=0;5>=r;n=++r){for(o=[],t=e=0;5>=e;t=++e)if(t!==n&&t!==n-3)for(s=i=0;2>=i;s=++i)o.push(3*t+s);u.push(o)}return u}(),j=[0,1,2,4,7,9,10,11,13,16],H=function(){var t,n,r,o,e,i,s,u,f,l;for(l=[],n=o=0;5>=o;n=++o){for(e=[],t=i=0;5>=i;t=++i)if(t!==n&&t!==n-3)for(f=0===t||3===t?[0,1,2]:[1],s=0,r=f.length;r>s;s++)u=f[s],e.push(3*t+u);l.push(e)}return l}(),Q=function(t,n,r){var o,e,i;return o=n%8,i=n>>3,e=o<<2,null!=r?(t[i]&=~(15<<e),t[i]|=r<<e,r):(t[i]&15<<e)>>>e},I=function(t,n,r,o){var e,i,s,u,f,l,h,p,c,a,v,F,R;for(F=function(){var t,r,o;for(o=[],R=t=0,r=Math.ceil(n/8)-1;r>=0?r>=t:t>=r;R=r>=0?++t:--t)o.push(4294967295);return o}(),p=1===t?k:j,i=0,Q(F,0,i),s=1;s!==n;){for(u=l=0,v=n-1;v>=0?v>=l:l>=v;u=v>=0?++l:--l)if(Q(F,u)===i)for(e=r(u),a=0,f=p.length;f>a;a++)h=p[a],c=o(e,h),15===Q(F,c)&&(Q(F,c,i+1),s++);i++}return F},e.pruningTables={sliceTwist:null,sliceFlip:null,sliceURFtoDLFParity:null,sliceURtoDFParity:null},V={sliceTwist:[1,g*y,function(t){return[t%g,t/g|0]},function(t,n){var r,o,i,s;return i=t[0],s=t[1],r=e.moveTables.FRtoBR[24*i][n]/24|0,o=e.moveTables.twist[s][n],o*g+r}],sliceFlip:[1,g*R,function(t){return[t%g,t/g|0]},function(t,n){var r,o,i,s;return s=t[0],r=t[1],i=e.moveTables.FRtoBR[24*s][n]/24|0,o=e.moveTables.flip[r][n],o*g+i}],sliceURFtoDLFParity:[2,D*B*m,function(t){return[t%2,(t/2|0)%D,(t/2|0)/D|0]},function(t,n){var r,o,i,s,u,f;return u=t[0],f=t[1],r=t[2],o=e.moveTables.parity[u][n],i=e.moveTables.FRtoBR[f][n],s=e.moveTables.URFtoDLF[r][n],2*(s*D+i)+o}],sliceURtoDFParity:[2,D*w*m,function(t){return[t%2,(t/2|0)%D,(t/2|0)/D|0]},function(t,n){var r,o,i,s,u,f;return u=t[0],f=t[1],r=t[2],o=e.moveTables.parity[u][n],i=e.moveTables.FRtoBR[f][n],s=e.moveTables.URtoDF[r][n],2*(s*D+i)+o}]},e.computePruningTables=function(){var t,n,r,o,e,i;for(i=1<=arguments.length?_.call(arguments,0):[],0===i.length&&(i=function(){var t;t=[];for(r in V)t.push(r);return t}()),n=0,t=i.length;t>n;n++)e=i[n],null===this.pruningTables[e]&&(o=V[e],this.pruningTables[e]=I.apply(null,o));return this},e.initSolver=function(){return e.computeMoveTables(),e.computePruningTables()},e.prototype.solve=function(t){var n,r,o,i,s,u,f,l,h,p;return null==t&&(t=22),o=function(){var t,n,r,o,e,i,s;for(n=["U","R","F","D","L","B"],i=["","2","'"],s=[],t=r=0;5>=r;t=++r)for(e=o=0;2>=o;e=++o)s.push(n[t]+i[e]);return s}(),n=function(){function t(t){this.parent=null,this.lastMove=null,this.depth=0,t&&this.init(t)}return t.prototype.init=function(t){return this.flip=t.flip(),this.twist=t.twist(),this.slice=t.FRtoBR()/D|0,this.parity=t.cornerParity(),this.URFtoDLF=t.URFtoDLF(),this.FRtoBR=t.FRtoBR(),this.URtoUL=t.URtoUL(),this.UBtoDF=t.UBtoDF(),this},t.prototype.solution=function(){return this.parent?this.parent.solution()+o[this.lastMove]+" ":""},t.prototype.move=function(t,n,r){return e.moveTables[t][n][r]},t.prototype.pruning=function(t,n){return Q(e.pruningTables[t],n)},t.prototype.moves1=function(){return null!==this.lastMove?G[this.lastMove/3|0]:k},t.prototype.minDist1=function(){var t,n;return t=this.pruning("sliceFlip",g*this.flip+this.slice),n=this.pruning("sliceTwist",g*this.twist+this.slice),N(t,n)},t.prototype.next1=function(t){var n;return n=r.pop(),n.parent=this,n.lastMove=t,n.depth=this.depth+1,n.flip=this.move("flip",this.flip,t),n.twist=this.move("twist",this.twist,t),n.slice=this.move("FRtoBR",24*this.slice,t)/24|0,n},t.prototype.moves2=function(){return null!==this.lastMove?H[this.lastMove/3|0]:j},t.prototype.minDist2=function(){var t,n,r,o;return r=(D*this.URtoDF+this.FRtoBR)*m+this.parity,t=this.pruning("sliceURtoDFParity",r),o=(D*this.URFtoDLF+this.FRtoBR)*m+this.parity,n=this.pruning("sliceURFtoDLFParity",o),N(t,n)},t.prototype.init2=function(t){return null==t&&(t=!0),null!==this.parent?(this.parent.init2(!1),this.URFtoDLF=this.move("URFtoDLF",this.parent.URFtoDLF,this.lastMove),this.FRtoBR=this.move("FRtoBR",this.parent.FRtoBR,this.lastMove),this.parity=this.move("parity",this.parent.parity,this.lastMove),this.URtoUL=this.move("URtoUL",this.parent.URtoUL,this.lastMove),this.UBtoDF=this.move("UBtoDF",this.parent.UBtoDF,this.lastMove),t?this.URtoDF=this.move("mergeURtoDF",this.URtoUL,this.UBtoDF):void 0):void 0},t.prototype.next2=function(t){var n;return n=r.pop(),n.parent=this,n.lastMove=t,n.depth=this.depth+1,n.URFtoDLF=this.move("URFtoDLF",this.URFtoDLF,t),n.FRtoBR=this.move("FRtoBR",this.FRtoBR,t),n.parity=this.move("parity",this.parity,t),n.URtoDF=this.move("URtoDF",this.URtoDF,t),n},t}(),l=null,s=function(n){var r,o,e,s;for(r=0,s=[],r=o=1,e=t;(e>=1?e>=o:o>=e)&&(i(n,r),null===l);r=e>=1?++o:--o)s.push(r++);return s},i=function(t,n){var o,e,s,u,h,p,c;if(0===n){if(0===t.minDist1()&&(null===t.lastMove||(h=t.lastMove,tt.call(j,h)<0)))return f(t)}else if(n>0&&t.minDist1()<=n){for(p=t.moves1(),c=[],e=0,o=p.length;o>e&&(s=p[e],u=t.next1(s),i(u,n-1),r.push(u),null===l);e++)c.push(void 0);return c}},f=function(n){var r,o,e,i;for(n.init2(),i=[],r=o=1,e=t-n.depth;(e>=1?e>=o:o>=e)&&(u(n,r),null===l);r=e>=1?++o:--o)i.push(r++);return i},u=function(t,n){var o,e,i,s,f,h;if(0===n){if(0===t.minDist2())return l=t.solution()}else if(n>0&&t.minDist2()<=n){for(f=t.moves2(),h=[],e=0,o=f.length;o>e&&(i=f[e],s=t.next2(i),u(s,n-1),r.push(s),null===l);e++)h.push(void 0);return h}},r=function(){var r,o,e;for(e=[],p=r=0,o=t+1;o>=0?o>=r:r>=o;p=o>=0?++r:--r)e.push(new n);return e}(),h=r.pop().init(this),s(h),r.push(h),l.length>0&&(l=l.substring(0,l.length-1)),l},e.scramble=function(){return e.inverse(e.random().solve())}}).call(this)}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/build/";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var Cube = __webpack_require__(1);
+	__webpack_require__(3);
+
+	self.addEventListener("message", function (e) {
+	  if (e.data.name !== "solve") return;
+	  var state = e.data.state;
+
+	  // Slice our state into faces, so it's easy to manipulate
+	  var faces = {};
+	  "ULFRBD".split("").forEach(function (face, idx) {
+	    faces[face] = state.substring(idx*9, (idx+1)*9);
+	  });
+
+	  // Map our state to an unrotated one
+	  var mapping = {};
+	  Object.keys(faces).forEach(function (face) {
+	    mapping[faces[face][4]] = face;
+	  });
+	  Object.keys(faces).forEach(function (face) {
+	    faces[face] = faces[face].split("").map(function (c) {
+	      return (c in mapping) ? mapping[c] : c;
+	    }).join("");
+	  });
+
+	  // Solve!
+	  var cst = "URFDLB".split("").map(function (face) {
+	    return faces[face];
+	  }).join("");
+	  var alg = Cube.fromString(cst).solve();
+
+	  self.postMessage({ name: "solved", state: state, alg: alg });
+	});
+
+	Cube.initSolver();
+	self.postMessage({ name: "ready" });
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var BL, BR, Cube, DB, DBL, DF, DFR, DL, DLF, DR, DRB, FL, FR, UB, UBR, UF, UFL, UL, ULB, UR, URF, cornerColor, cornerFacelet, edgeColor, edgeFacelet, ref, ref1, ref2;
+
+	  ref = [0, 1, 2, 3, 4, 5, 6, 7], URF = ref[0], UFL = ref[1], ULB = ref[2], UBR = ref[3], DFR = ref[4], DLF = ref[5], DBL = ref[6], DRB = ref[7];
+
+	  ref1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], UR = ref1[0], UF = ref1[1], UL = ref1[2], UB = ref1[3], DR = ref1[4], DF = ref1[5], DL = ref1[6], DB = ref1[7], FR = ref1[8], FL = ref1[9], BL = ref1[10], BR = ref1[11];
+
+	  ref2 = (function() {
+	    var B, D, F, L, R, U;
+	    U = function(x) {
+	      return x - 1;
+	    };
+	    R = function(x) {
+	      return U(9) + x;
+	    };
+	    F = function(x) {
+	      return R(9) + x;
+	    };
+	    D = function(x) {
+	      return F(9) + x;
+	    };
+	    L = function(x) {
+	      return D(9) + x;
+	    };
+	    B = function(x) {
+	      return L(9) + x;
+	    };
+	    return [[[U(9), R(1), F(3)], [U(7), F(1), L(3)], [U(1), L(1), B(3)], [U(3), B(1), R(3)], [D(3), F(9), R(7)], [D(1), L(9), F(7)], [D(7), B(9), L(7)], [D(9), R(9), B(7)]], [[U(6), R(2)], [U(8), F(2)], [U(4), L(2)], [U(2), B(2)], [D(6), R(8)], [D(2), F(8)], [D(4), L(8)], [D(8), B(8)], [F(6), R(4)], [F(4), L(6)], [B(6), L(4)], [B(4), R(6)]]];
+	  })(), cornerFacelet = ref2[0], edgeFacelet = ref2[1];
+
+	  cornerColor = [['U', 'R', 'F'], ['U', 'F', 'L'], ['U', 'L', 'B'], ['U', 'B', 'R'], ['D', 'F', 'R'], ['D', 'L', 'F'], ['D', 'B', 'L'], ['D', 'R', 'B']];
+
+	  edgeColor = [['U', 'R'], ['U', 'F'], ['U', 'L'], ['U', 'B'], ['D', 'R'], ['D', 'F'], ['D', 'L'], ['D', 'B'], ['F', 'R'], ['F', 'L'], ['B', 'L'], ['B', 'R']];
+
+	  Cube = (function() {
+	    var faceNames, faceNums, parseAlg;
+
+	    function Cube(other) {
+	      var x;
+	      if (other != null) {
+	        this.init(other);
+	      } else {
+	        this.identity();
+	      }
+	      this.newCp = (function() {
+	        var k, results;
+	        results = [];
+	        for (x = k = 0; k <= 7; x = ++k) {
+	          results.push(0);
+	        }
+	        return results;
+	      })();
+	      this.newEp = (function() {
+	        var k, results;
+	        results = [];
+	        for (x = k = 0; k <= 11; x = ++k) {
+	          results.push(0);
+	        }
+	        return results;
+	      })();
+	      this.newCo = (function() {
+	        var k, results;
+	        results = [];
+	        for (x = k = 0; k <= 7; x = ++k) {
+	          results.push(0);
+	        }
+	        return results;
+	      })();
+	      this.newEo = (function() {
+	        var k, results;
+	        results = [];
+	        for (x = k = 0; k <= 11; x = ++k) {
+	          results.push(0);
+	        }
+	        return results;
+	      })();
+	    }
+
+	    Cube.prototype.init = function(state) {
+	      this.cp = state.cp.slice(0);
+	      this.co = state.co.slice(0);
+	      this.ep = state.ep.slice(0);
+	      return this.eo = state.eo.slice(0);
+	    };
+
+	    Cube.prototype.identity = function() {
+	      var x;
+	      this.cp = [0, 1, 2, 3, 4, 5, 6, 7];
+	      this.co = (function() {
+	        var k, results;
+	        results = [];
+	        for (x = k = 0; k <= 7; x = ++k) {
+	          results.push(0);
+	        }
+	        return results;
+	      })();
+	      this.ep = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+	      return this.eo = (function() {
+	        var k, results;
+	        results = [];
+	        for (x = k = 0; k <= 11; x = ++k) {
+	          results.push(0);
+	        }
+	        return results;
+	      })();
+	    };
+
+	    Cube.prototype.toJSON = function() {
+	      return {
+	        cp: this.cp,
+	        co: this.co,
+	        ep: this.ep,
+	        eo: this.eo
+	      };
+	    };
+
+	    Cube.prototype.asString = function() {
+	      var c, corner, edge, i, k, l, len, m, n, o, ori, p, ref3, ref4, result;
+	      result = [];
+	      ref3 = [[4, 'U'], [13, 'R'], [22, 'F'], [31, 'D'], [40, 'L'], [49, 'B']];
+	      for (k = 0, len = ref3.length; k < len; k++) {
+	        ref4 = ref3[k], i = ref4[0], c = ref4[1];
+	        result[i] = c;
+	      }
+	      for (i = l = 0; l <= 7; i = ++l) {
+	        corner = this.cp[i];
+	        ori = this.co[i];
+	        for (n = m = 0; m <= 2; n = ++m) {
+	          result[cornerFacelet[i][(n + ori) % 3]] = cornerColor[corner][n];
+	        }
+	      }
+	      for (i = o = 0; o <= 11; i = ++o) {
+	        edge = this.ep[i];
+	        ori = this.eo[i];
+	        for (n = p = 0; p <= 1; n = ++p) {
+	          result[edgeFacelet[i][(n + ori) % 2]] = edgeColor[edge][n];
+	        }
+	      }
+	      return result.join('');
+	    };
+
+	    Cube.fromString = function(str) {
+	      var col1, col2, cube, i, j, k, l, m, o, ori, p, ref3;
+	      cube = new Cube;
+	      for (i = k = 0; k <= 7; i = ++k) {
+	        for (ori = l = 0; l <= 2; ori = ++l) {
+	          if ((ref3 = str[cornerFacelet[i][ori]]) === 'U' || ref3 === 'D') {
+	            break;
+	          }
+	        }
+	        col1 = str[cornerFacelet[i][(ori + 1) % 3]];
+	        col2 = str[cornerFacelet[i][(ori + 2) % 3]];
+	        for (j = m = 0; m <= 7; j = ++m) {
+	          if (col1 === cornerColor[j][1] && col2 === cornerColor[j][2]) {
+	            cube.cp[i] = j;
+	            cube.co[i] = ori % 3;
+	          }
+	        }
+	      }
+	      for (i = o = 0; o <= 11; i = ++o) {
+	        for (j = p = 0; p <= 11; j = ++p) {
+	          if (str[edgeFacelet[i][0]] === edgeColor[j][0] && str[edgeFacelet[i][1]] === edgeColor[j][1]) {
+	            cube.ep[i] = j;
+	            cube.eo[i] = 0;
+	            break;
+	          }
+	          if (str[edgeFacelet[i][0]] === edgeColor[j][1] && str[edgeFacelet[i][1]] === edgeColor[j][0]) {
+	            cube.ep[i] = j;
+	            cube.eo[i] = 1;
+	            break;
+	          }
+	        }
+	      }
+	      return cube;
+	    };
+
+	    Cube.prototype.clone = function() {
+	      return new Cube(this.toJSON());
+	    };
+
+	    Cube.prototype.randomize = (function() {
+	      var mixPerm, randOri, randint, result;
+	      randint = function(min, max) {
+	        return min + (Math.random() * (max - min + 1) | 0);
+	      };
+	      mixPerm = function(arr) {
+	        var i, k, max, r, ref3, ref4, ref5, results;
+	        max = arr.length - 1;
+	        results = [];
+	        for (i = k = 0, ref3 = max - 2; 0 <= ref3 ? k <= ref3 : k >= ref3; i = 0 <= ref3 ? ++k : --k) {
+	          r = randint(i, max);
+	          if (i !== r) {
+	            ref4 = [arr[r], arr[i]], arr[i] = ref4[0], arr[r] = ref4[1];
+	            results.push((ref5 = [arr[max - 1], arr[max]], arr[max] = ref5[0], arr[max - 1] = ref5[1], ref5));
+	          } else {
+	            results.push(void 0);
+	          }
+	        }
+	        return results;
+	      };
+	      randOri = function(arr, max) {
+	        var i, k, ori, ref3;
+	        ori = 0;
+	        for (i = k = 0, ref3 = arr.length - 2; 0 <= ref3 ? k <= ref3 : k >= ref3; i = 0 <= ref3 ? ++k : --k) {
+	          ori += (arr[i] = randint(0, max - 1));
+	        }
+	        return arr[arr.length - 1] = (max - ori % max) % max;
+	      };
+	      result = function() {
+	        mixPerm(this.cp);
+	        mixPerm(this.ep);
+	        randOri(this.co, 3);
+	        randOri(this.eo, 2);
+	        return this;
+	      };
+	      return result;
+	    })();
+
+	    Cube.random = function() {
+	      return (new Cube).randomize();
+	    };
+
+	    Cube.prototype.isSolved = function() {
+	      var c, e, k, l;
+	      for (c = k = 0; k <= 7; c = ++k) {
+	        if (this.cp[c] !== c) {
+	          return false;
+	        }
+	        if (this.co[c] !== 0) {
+	          return false;
+	        }
+	      }
+	      for (e = l = 0; l <= 11; e = ++l) {
+	        if (this.ep[e] !== e) {
+	          return false;
+	        }
+	        if (this.eo[e] !== 0) {
+	          return false;
+	        }
+	      }
+	      return true;
+	    };
+
+	    Cube.prototype.cornerMultiply = function(other) {
+	      var from, k, ref3, ref4, to;
+	      for (to = k = 0; k <= 7; to = ++k) {
+	        from = other.cp[to];
+	        this.newCp[to] = this.cp[from];
+	        this.newCo[to] = (this.co[from] + other.co[to]) % 3;
+	      }
+	      ref3 = [this.newCp, this.cp], this.cp = ref3[0], this.newCp = ref3[1];
+	      ref4 = [this.newCo, this.co], this.co = ref4[0], this.newCo = ref4[1];
+	      return this;
+	    };
+
+	    Cube.prototype.edgeMultiply = function(other) {
+	      var from, k, ref3, ref4, to;
+	      for (to = k = 0; k <= 11; to = ++k) {
+	        from = other.ep[to];
+	        this.newEp[to] = this.ep[from];
+	        this.newEo[to] = (this.eo[from] + other.eo[to]) % 2;
+	      }
+	      ref3 = [this.newEp, this.ep], this.ep = ref3[0], this.newEp = ref3[1];
+	      ref4 = [this.newEo, this.eo], this.eo = ref4[0], this.newEo = ref4[1];
+	      return this;
+	    };
+
+	    Cube.prototype.multiply = function(other) {
+	      this.cornerMultiply(other);
+	      this.edgeMultiply(other);
+	      return this;
+	    };
+
+	    Cube.moves = [
+	      {
+	        cp: [UBR, URF, UFL, ULB, DFR, DLF, DBL, DRB],
+	        co: [0, 0, 0, 0, 0, 0, 0, 0],
+	        ep: [UB, UR, UF, UL, DR, DF, DL, DB, FR, FL, BL, BR],
+	        eo: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	      }, {
+	        cp: [DFR, UFL, ULB, URF, DRB, DLF, DBL, UBR],
+	        co: [2, 0, 0, 1, 1, 0, 0, 2],
+	        ep: [FR, UF, UL, UB, BR, DF, DL, DB, DR, FL, BL, UR],
+	        eo: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	      }, {
+	        cp: [UFL, DLF, ULB, UBR, URF, DFR, DBL, DRB],
+	        co: [1, 2, 0, 0, 2, 1, 0, 0],
+	        ep: [UR, FL, UL, UB, DR, FR, DL, DB, UF, DF, BL, BR],
+	        eo: [0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0]
+	      }, {
+	        cp: [URF, UFL, ULB, UBR, DLF, DBL, DRB, DFR],
+	        co: [0, 0, 0, 0, 0, 0, 0, 0],
+	        ep: [UR, UF, UL, UB, DF, DL, DB, DR, FR, FL, BL, BR],
+	        eo: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	      }, {
+	        cp: [URF, ULB, DBL, UBR, DFR, UFL, DLF, DRB],
+	        co: [0, 1, 2, 0, 0, 2, 1, 0],
+	        ep: [UR, UF, BL, UB, DR, DF, FL, DB, FR, UL, DL, BR],
+	        eo: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	      }, {
+	        cp: [URF, UFL, UBR, DRB, DFR, DLF, ULB, DBL],
+	        co: [0, 0, 1, 2, 0, 0, 2, 1],
+	        ep: [UR, UF, UL, BR, DR, DF, DL, BL, FR, FL, UB, DB],
+	        eo: [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1]
+	      }
+	    ];
+
+	    faceNums = {
+	      U: 0,
+	      R: 1,
+	      F: 2,
+	      D: 3,
+	      L: 4,
+	      B: 5
+	    };
+
+	    faceNames = {
+	      0: 'U',
+	      1: 'R',
+	      2: 'F',
+	      3: 'D',
+	      4: 'L',
+	      5: 'B'
+	    };
+
+	    parseAlg = function(arg) {
+	      var k, len, move, part, power, ref3, results;
+	      if (typeof arg === 'string') {
+	        ref3 = arg.split(/\s+/);
+	        results = [];
+	        for (k = 0, len = ref3.length; k < len; k++) {
+	          part = ref3[k];
+	          if (part.length === 0) {
+	            continue;
+	          }
+	          if (part.length > 2) {
+	            throw 'Invalid move: ' + part;
+	          }
+	          move = faceNums[part[0]];
+	          if (move === void 0) {
+	            throw 'Invalid move: ' + part;
+	          }
+	          if (part.length === 1) {
+	            power = 0;
+	          } else {
+	            if (part[1] === '2') {
+	              power = 1;
+	            } else if (part[1] === "'") {
+	              power = 2;
+	            } else {
+	              throw 'Invalid move: ' + part;
+	            }
+	          }
+	          results.push(move * 3 + power);
+	        }
+	        return results;
+	      } else if (arg.length != null) {
+	        return arg;
+	      } else {
+	        return [arg];
+	      }
+	    };
+
+	    Cube.prototype.move = function(arg) {
+	      var face, k, l, len, move, power, ref3, ref4, x;
+	      ref3 = parseAlg(arg);
+	      for (k = 0, len = ref3.length; k < len; k++) {
+	        move = ref3[k];
+	        face = move / 3 | 0;
+	        power = move % 3;
+	        for (x = l = 0, ref4 = power; 0 <= ref4 ? l <= ref4 : l >= ref4; x = 0 <= ref4 ? ++l : --l) {
+	          this.multiply(Cube.moves[face]);
+	        }
+	      }
+	      return this;
+	    };
+
+	    Cube.inverse = function(arg) {
+	      var face, k, len, move, power, result, str;
+	      result = (function() {
+	        var k, len, ref3, results;
+	        ref3 = parseAlg(arg);
+	        results = [];
+	        for (k = 0, len = ref3.length; k < len; k++) {
+	          move = ref3[k];
+	          face = move / 3 | 0;
+	          power = move % 3;
+	          results.push(face * 3 + -(power - 1) + 1);
+	        }
+	        return results;
+	      })();
+	      result.reverse();
+	      if (typeof arg === 'string') {
+	        str = '';
+	        for (k = 0, len = result.length; k < len; k++) {
+	          move = result[k];
+	          face = move / 3 | 0;
+	          power = move % 3;
+	          str += faceNames[face];
+	          if (power === 1) {
+	            str += '2';
+	          } else if (power === 2) {
+	            str += "'";
+	          }
+	          str += ' ';
+	        }
+	        return str.substring(0, str.length - 1);
+	      } else if (arg.length != null) {
+	        return result;
+	      } else {
+	        return result[0];
+	      }
+	    };
+
+	    return Cube;
+
+	  })();
+
+	  if (typeof module !== "undefined" && module !== null) {
+	    module.exports = Cube;
+	  } else {
+	    this.Cube = Cube;
+	  }
+
+	}).call(this);
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var BL, BR, Cnk, Cube, DB, DBL, DF, DFR, DL, DLF, DR, DRB, FL, FR, Include, N_FLIP, N_FRtoBR, N_PARITY, N_SLICE1, N_SLICE2, N_TWIST, N_UBtoDF, N_URFtoDLF, N_URtoDF, N_URtoUL, UB, UBR, UF, UFL, UL, ULB, UR, URF, allMoves1, allMoves2, computeMoveTable, computePruningTable, factorial, key, max, mergeURtoDF, moveTableParams, nextMoves1, nextMoves2, permutationIndex, pruning, pruningTableParams, ref, ref1, rotateLeft, rotateRight, value,
+	    slice1 = [].slice,
+	    indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+	  Cube = this.Cube || __webpack_require__(1);
+
+	  ref = [0, 1, 2, 3, 4, 5, 6, 7], URF = ref[0], UFL = ref[1], ULB = ref[2], UBR = ref[3], DFR = ref[4], DLF = ref[5], DBL = ref[6], DRB = ref[7];
+
+	  ref1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], UR = ref1[0], UF = ref1[1], UL = ref1[2], UB = ref1[3], DR = ref1[4], DF = ref1[5], DL = ref1[6], DB = ref1[7], FR = ref1[8], FL = ref1[9], BL = ref1[10], BR = ref1[11];
+
+	  Cnk = function(n, k) {
+	    var i, j, s;
+	    if (n < k) {
+	      return 0;
+	    }
+	    if (k > n / 2) {
+	      k = n - k;
+	    }
+	    s = 1;
+	    i = n;
+	    j = 1;
+	    while (i !== n - k) {
+	      s *= i;
+	      s /= j;
+	      i--;
+	      j++;
+	    }
+	    return s;
+	  };
+
+	  factorial = function(n) {
+	    var f, i, m, ref2;
+	    f = 1;
+	    for (i = m = 2, ref2 = n; 2 <= ref2 ? m <= ref2 : m >= ref2; i = 2 <= ref2 ? ++m : --m) {
+	      f *= i;
+	    }
+	    return f;
+	  };
+
+	  max = function(a, b) {
+	    if (a > b) {
+	      return a;
+	    } else {
+	      return b;
+	    }
+	  };
+
+	  rotateLeft = function(array, l, r) {
+	    var i, m, ref2, ref3, tmp;
+	    tmp = array[l];
+	    for (i = m = ref2 = l, ref3 = r - 1; ref2 <= ref3 ? m <= ref3 : m >= ref3; i = ref2 <= ref3 ? ++m : --m) {
+	      array[i] = array[i + 1];
+	    }
+	    return array[r] = tmp;
+	  };
+
+	  rotateRight = function(array, l, r) {
+	    var i, m, ref2, ref3, tmp;
+	    tmp = array[r];
+	    for (i = m = ref2 = r, ref3 = l + 1; ref2 <= ref3 ? m <= ref3 : m >= ref3; i = ref2 <= ref3 ? ++m : --m) {
+	      array[i] = array[i - 1];
+	    }
+	    return array[l] = tmp;
+	  };
+
+	  permutationIndex = function(context, start, end, fromEnd) {
+	    var i, maxAll, maxB, maxOur, our, permName;
+	    if (fromEnd == null) {
+	      fromEnd = false;
+	    }
+	    maxOur = end - start;
+	    maxB = factorial(maxOur + 1);
+	    if (context === 'corners') {
+	      maxAll = 7;
+	      permName = 'cp';
+	    } else {
+	      maxAll = 11;
+	      permName = 'ep';
+	    }
+	    our = (function() {
+	      var m, ref2, results;
+	      results = [];
+	      for (i = m = 0, ref2 = maxOur; 0 <= ref2 ? m <= ref2 : m >= ref2; i = 0 <= ref2 ? ++m : --m) {
+	        results.push(0);
+	      }
+	      return results;
+	    })();
+	    return function(index) {
+	      var a, b, c, j, k, m, o, p, perm, q, ref10, ref11, ref12, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9, t, u, w, x, y, z;
+	      if (index != null) {
+	        for (i = m = 0, ref2 = maxOur; 0 <= ref2 ? m <= ref2 : m >= ref2; i = 0 <= ref2 ? ++m : --m) {
+	          our[i] = i + start;
+	        }
+	        b = index % maxB;
+	        a = index / maxB | 0;
+	        perm = this[permName];
+	        for (i = o = 0, ref3 = maxAll; 0 <= ref3 ? o <= ref3 : o >= ref3; i = 0 <= ref3 ? ++o : --o) {
+	          perm[i] = -1;
+	        }
+	        for (j = p = 1, ref4 = maxOur; 1 <= ref4 ? p <= ref4 : p >= ref4; j = 1 <= ref4 ? ++p : --p) {
+	          k = b % (j + 1);
+	          b = b / (j + 1) | 0;
+	          while (k > 0) {
+	            rotateRight(our, 0, j);
+	            k--;
+	          }
+	        }
+	        x = maxOur;
+	        if (fromEnd) {
+	          for (j = q = 0, ref5 = maxAll; 0 <= ref5 ? q <= ref5 : q >= ref5; j = 0 <= ref5 ? ++q : --q) {
+	            c = Cnk(maxAll - j, x + 1);
+	            if (a - c >= 0) {
+	              perm[j] = our[maxOur - x];
+	              a -= c;
+	              x--;
+	            }
+	          }
+	        } else {
+	          for (j = t = ref6 = maxAll; ref6 <= 0 ? t <= 0 : t >= 0; j = ref6 <= 0 ? ++t : --t) {
+	            c = Cnk(j, x + 1);
+	            if (a - c >= 0) {
+	              perm[j] = our[x];
+	              a -= c;
+	              x--;
+	            }
+	          }
+	        }
+	        return this;
+	      } else {
+	        perm = this[permName];
+	        for (i = u = 0, ref7 = maxOur; 0 <= ref7 ? u <= ref7 : u >= ref7; i = 0 <= ref7 ? ++u : --u) {
+	          our[i] = -1;
+	        }
+	        a = b = x = 0;
+	        if (fromEnd) {
+	          for (j = w = ref8 = maxAll; ref8 <= 0 ? w <= 0 : w >= 0; j = ref8 <= 0 ? ++w : --w) {
+	            if ((start <= (ref9 = perm[j]) && ref9 <= end)) {
+	              a += Cnk(maxAll - j, x + 1);
+	              our[maxOur - x] = perm[j];
+	              x++;
+	            }
+	          }
+	        } else {
+	          for (j = y = 0, ref10 = maxAll; 0 <= ref10 ? y <= ref10 : y >= ref10; j = 0 <= ref10 ? ++y : --y) {
+	            if ((start <= (ref11 = perm[j]) && ref11 <= end)) {
+	              a += Cnk(j, x + 1);
+	              our[x] = perm[j];
+	              x++;
+	            }
+	          }
+	        }
+	        for (j = z = ref12 = maxOur; ref12 <= 0 ? z <= 0 : z >= 0; j = ref12 <= 0 ? ++z : --z) {
+	          k = 0;
+	          while (our[j] !== start + j) {
+	            rotateLeft(our, 0, j);
+	            k++;
+	          }
+	          b = (j + 1) * b + k;
+	        }
+	        return a * maxB + b;
+	      }
+	    };
+	  };
+
+	  Include = {
+	    twist: function(twist) {
+	      var i, m, o, ori, parity, v;
+	      if (twist != null) {
+	        parity = 0;
+	        for (i = m = 6; m >= 0; i = --m) {
+	          ori = twist % 3;
+	          twist = (twist / 3) | 0;
+	          this.co[i] = ori;
+	          parity += ori;
+	        }
+	        this.co[7] = (3 - parity % 3) % 3;
+	        return this;
+	      } else {
+	        v = 0;
+	        for (i = o = 0; o <= 6; i = ++o) {
+	          v = 3 * v + this.co[i];
+	        }
+	        return v;
+	      }
+	    },
+	    flip: function(flip) {
+	      var i, m, o, ori, parity, v;
+	      if (flip != null) {
+	        parity = 0;
+	        for (i = m = 10; m >= 0; i = --m) {
+	          ori = flip % 2;
+	          flip = flip / 2 | 0;
+	          this.eo[i] = ori;
+	          parity += ori;
+	        }
+	        this.eo[11] = (2 - parity % 2) % 2;
+	        return this;
+	      } else {
+	        v = 0;
+	        for (i = o = 0; o <= 10; i = ++o) {
+	          v = 2 * v + this.eo[i];
+	        }
+	        return v;
+	      }
+	    },
+	    cornerParity: function() {
+	      var i, j, m, o, ref2, ref3, ref4, ref5, s;
+	      s = 0;
+	      for (i = m = ref2 = DRB, ref3 = URF + 1; ref2 <= ref3 ? m <= ref3 : m >= ref3; i = ref2 <= ref3 ? ++m : --m) {
+	        for (j = o = ref4 = i - 1, ref5 = URF; ref4 <= ref5 ? o <= ref5 : o >= ref5; j = ref4 <= ref5 ? ++o : --o) {
+	          if (this.cp[j] > this.cp[i]) {
+	            s++;
+	          }
+	        }
+	      }
+	      return s % 2;
+	    },
+	    edgeParity: function() {
+	      var i, j, m, o, ref2, ref3, ref4, ref5, s;
+	      s = 0;
+	      for (i = m = ref2 = BR, ref3 = UR + 1; ref2 <= ref3 ? m <= ref3 : m >= ref3; i = ref2 <= ref3 ? ++m : --m) {
+	        for (j = o = ref4 = i - 1, ref5 = UR; ref4 <= ref5 ? o <= ref5 : o >= ref5; j = ref4 <= ref5 ? ++o : --o) {
+	          if (this.ep[j] > this.ep[i]) {
+	            s++;
+	          }
+	        }
+	      }
+	      return s % 2;
+	    },
+	    URFtoDLF: permutationIndex('corners', URF, DLF),
+	    URtoUL: permutationIndex('edges', UR, UL),
+	    UBtoDF: permutationIndex('edges', UB, DF),
+	    URtoDF: permutationIndex('edges', UR, DF),
+	    FRtoBR: permutationIndex('edges', FR, BR, true)
+	  };
+
+	  for (key in Include) {
+	    value = Include[key];
+	    Cube.prototype[key] = value;
+	  }
+
+	  computeMoveTable = function(context, coord, size) {
+	    var apply, cube, i, inner, j, k, m, move, o, p, ref2, results;
+	    apply = context === 'corners' ? 'cornerMultiply' : 'edgeMultiply';
+	    cube = new Cube;
+	    results = [];
+	    for (i = m = 0, ref2 = size - 1; 0 <= ref2 ? m <= ref2 : m >= ref2; i = 0 <= ref2 ? ++m : --m) {
+	      cube[coord](i);
+	      inner = [];
+	      for (j = o = 0; o <= 5; j = ++o) {
+	        move = Cube.moves[j];
+	        for (k = p = 0; p <= 2; k = ++p) {
+	          cube[apply](move);
+	          inner.push(cube[coord]());
+	        }
+	        cube[apply](move);
+	      }
+	      results.push(inner);
+	    }
+	    return results;
+	  };
+
+	  mergeURtoDF = (function() {
+	    var a, b;
+	    a = new Cube;
+	    b = new Cube;
+	    return function(URtoUL, UBtoDF) {
+	      var i, m;
+	      a.URtoUL(URtoUL);
+	      b.UBtoDF(UBtoDF);
+	      for (i = m = 0; m <= 7; i = ++m) {
+	        if (a.ep[i] !== -1) {
+	          if (b.ep[i] !== -1) {
+	            return -1;
+	          } else {
+	            b.ep[i] = a.ep[i];
+	          }
+	        }
+	      }
+	      return b.URtoDF();
+	    };
+	  })();
+
+	  N_TWIST = 2187;
+
+	  N_FLIP = 2048;
+
+	  N_PARITY = 2;
+
+	  N_FRtoBR = 11880;
+
+	  N_SLICE1 = 495;
+
+	  N_SLICE2 = 24;
+
+	  N_URFtoDLF = 20160;
+
+	  N_URtoDF = 20160;
+
+	  N_URtoUL = 1320;
+
+	  N_UBtoDF = 1320;
+
+	  Cube.moveTables = {
+	    parity: [[1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1], [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]],
+	    twist: null,
+	    flip: null,
+	    FRtoBR: null,
+	    URFtoDLF: null,
+	    URtoDF: null,
+	    URtoUL: null,
+	    UBtoDF: null,
+	    mergeURtoDF: null
+	  };
+
+	  moveTableParams = {
+	    twist: ['corners', N_TWIST],
+	    flip: ['edges', N_FLIP],
+	    FRtoBR: ['edges', N_FRtoBR],
+	    URFtoDLF: ['corners', N_URFtoDLF],
+	    URtoDF: ['edges', N_URtoDF],
+	    URtoUL: ['edges', N_URtoUL],
+	    UBtoDF: ['edges', N_UBtoDF],
+	    mergeURtoDF: []
+	  };
+
+	  Cube.computeMoveTables = function() {
+	    var len, m, name, ref2, scope, size, tableName, tables;
+	    tables = 1 <= arguments.length ? slice1.call(arguments, 0) : [];
+	    if (tables.length === 0) {
+	      tables = (function() {
+	        var results;
+	        results = [];
+	        for (name in moveTableParams) {
+	          results.push(name);
+	        }
+	        return results;
+	      })();
+	    }
+	    for (m = 0, len = tables.length; m < len; m++) {
+	      tableName = tables[m];
+	      if (this.moveTables[tableName] !== null) {
+	        continue;
+	      }
+	      if (tableName === 'mergeURtoDF') {
+	        this.moveTables.mergeURtoDF = (function() {
+	          var UBtoDF, URtoUL, o, results;
+	          results = [];
+	          for (URtoUL = o = 0; o <= 335; URtoUL = ++o) {
+	            results.push((function() {
+	              var p, results1;
+	              results1 = [];
+	              for (UBtoDF = p = 0; p <= 335; UBtoDF = ++p) {
+	                results1.push(mergeURtoDF(URtoUL, UBtoDF));
+	              }
+	              return results1;
+	            })());
+	          }
+	          return results;
+	        })();
+	      } else {
+	        ref2 = moveTableParams[tableName], scope = ref2[0], size = ref2[1];
+	        this.moveTables[tableName] = computeMoveTable(scope, tableName, size);
+	      }
+	    }
+	    return this;
+	  };
+
+	  allMoves1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+
+	  nextMoves1 = (function() {
+	    var face, lastFace, m, next, o, p, power, results;
+	    results = [];
+	    for (lastFace = m = 0; m <= 5; lastFace = ++m) {
+	      next = [];
+	      for (face = o = 0; o <= 5; face = ++o) {
+	        if (face !== lastFace && face !== lastFace - 3) {
+	          for (power = p = 0; p <= 2; power = ++p) {
+	            next.push(face * 3 + power);
+	          }
+	        }
+	      }
+	      results.push(next);
+	    }
+	    return results;
+	  })();
+
+	  allMoves2 = [0, 1, 2, 4, 7, 9, 10, 11, 13, 16];
+
+	  nextMoves2 = (function() {
+	    var face, lastFace, len, m, next, o, p, power, powers, results;
+	    results = [];
+	    for (lastFace = m = 0; m <= 5; lastFace = ++m) {
+	      next = [];
+	      for (face = o = 0; o <= 5; face = ++o) {
+	        if (!(face !== lastFace && face !== lastFace - 3)) {
+	          continue;
+	        }
+	        powers = face === 0 || face === 3 ? [0, 1, 2] : [1];
+	        for (p = 0, len = powers.length; p < len; p++) {
+	          power = powers[p];
+	          next.push(face * 3 + power);
+	        }
+	      }
+	      results.push(next);
+	    }
+	    return results;
+	  })();
+
+	  pruning = function(table, index, value) {
+	    var pos, shift, slot;
+	    pos = index % 8;
+	    slot = index >> 3;
+	    shift = pos << 2;
+	    if (value != null) {
+	      table[slot] &= ~(0xF << shift);
+	      table[slot] |= value << shift;
+	      return value;
+	    } else {
+	      return (table[slot] & (0xF << shift)) >>> shift;
+	    }
+	  };
+
+	  computePruningTable = function(phase, size, currentCoords, nextIndex) {
+	    var current, depth, done, index, len, m, move, moves, next, o, ref2, table, x;
+	    table = (function() {
+	      var m, ref2, results;
+	      results = [];
+	      for (x = m = 0, ref2 = Math.ceil(size / 8) - 1; 0 <= ref2 ? m <= ref2 : m >= ref2; x = 0 <= ref2 ? ++m : --m) {
+	        results.push(0xFFFFFFFF);
+	      }
+	      return results;
+	    })();
+	    if (phase === 1) {
+	      moves = allMoves1;
+	    } else {
+	      moves = allMoves2;
+	    }
+	    depth = 0;
+	    pruning(table, 0, depth);
+	    done = 1;
+	    while (done !== size) {
+	      for (index = m = 0, ref2 = size - 1; 0 <= ref2 ? m <= ref2 : m >= ref2; index = 0 <= ref2 ? ++m : --m) {
+	        if (!(pruning(table, index) === depth)) {
+	          continue;
+	        }
+	        current = currentCoords(index);
+	        for (o = 0, len = moves.length; o < len; o++) {
+	          move = moves[o];
+	          next = nextIndex(current, move);
+	          if (pruning(table, next) === 0xF) {
+	            pruning(table, next, depth + 1);
+	            done++;
+	          }
+	        }
+	      }
+	      depth++;
+	    }
+	    return table;
+	  };
+
+	  Cube.pruningTables = {
+	    sliceTwist: null,
+	    sliceFlip: null,
+	    sliceURFtoDLFParity: null,
+	    sliceURtoDFParity: null
+	  };
+
+	  pruningTableParams = {
+	    sliceTwist: [
+	      1, N_SLICE1 * N_TWIST, function(index) {
+	        return [index % N_SLICE1, index / N_SLICE1 | 0];
+	      }, function(current, move) {
+	        var newSlice, newTwist, slice, twist;
+	        slice = current[0], twist = current[1];
+	        newSlice = Cube.moveTables.FRtoBR[slice * 24][move] / 24 | 0;
+	        newTwist = Cube.moveTables.twist[twist][move];
+	        return newTwist * N_SLICE1 + newSlice;
+	      }
+	    ],
+	    sliceFlip: [
+	      1, N_SLICE1 * N_FLIP, function(index) {
+	        return [index % N_SLICE1, index / N_SLICE1 | 0];
+	      }, function(current, move) {
+	        var flip, newFlip, newSlice, slice;
+	        slice = current[0], flip = current[1];
+	        newSlice = Cube.moveTables.FRtoBR[slice * 24][move] / 24 | 0;
+	        newFlip = Cube.moveTables.flip[flip][move];
+	        return newFlip * N_SLICE1 + newSlice;
+	      }
+	    ],
+	    sliceURFtoDLFParity: [
+	      2, N_SLICE2 * N_URFtoDLF * N_PARITY, function(index) {
+	        return [index % 2, (index / 2 | 0) % N_SLICE2, (index / 2 | 0) / N_SLICE2 | 0];
+	      }, function(current, move) {
+	        var URFtoDLF, newParity, newSlice, newURFtoDLF, parity, slice;
+	        parity = current[0], slice = current[1], URFtoDLF = current[2];
+	        newParity = Cube.moveTables.parity[parity][move];
+	        newSlice = Cube.moveTables.FRtoBR[slice][move];
+	        newURFtoDLF = Cube.moveTables.URFtoDLF[URFtoDLF][move];
+	        return (newURFtoDLF * N_SLICE2 + newSlice) * 2 + newParity;
+	      }
+	    ],
+	    sliceURtoDFParity: [
+	      2, N_SLICE2 * N_URtoDF * N_PARITY, function(index) {
+	        return [index % 2, (index / 2 | 0) % N_SLICE2, (index / 2 | 0) / N_SLICE2 | 0];
+	      }, function(current, move) {
+	        var URtoDF, newParity, newSlice, newURtoDF, parity, slice;
+	        parity = current[0], slice = current[1], URtoDF = current[2];
+	        newParity = Cube.moveTables.parity[parity][move];
+	        newSlice = Cube.moveTables.FRtoBR[slice][move];
+	        newURtoDF = Cube.moveTables.URtoDF[URtoDF][move];
+	        return (newURtoDF * N_SLICE2 + newSlice) * 2 + newParity;
+	      }
+	    ]
+	  };
+
+	  Cube.computePruningTables = function() {
+	    var len, m, name, params, tableName, tables;
+	    tables = 1 <= arguments.length ? slice1.call(arguments, 0) : [];
+	    if (tables.length === 0) {
+	      tables = (function() {
+	        var results;
+	        results = [];
+	        for (name in pruningTableParams) {
+	          results.push(name);
+	        }
+	        return results;
+	      })();
+	    }
+	    for (m = 0, len = tables.length; m < len; m++) {
+	      tableName = tables[m];
+	      if (this.pruningTables[tableName] !== null) {
+	        continue;
+	      }
+	      params = pruningTableParams[tableName];
+	      this.pruningTables[tableName] = computePruningTable.apply(null, params);
+	    }
+	    return this;
+	  };
+
+	  Cube.initSolver = function() {
+	    Cube.computeMoveTables();
+	    return Cube.computePruningTables();
+	  };
+
+	  Cube.prototype.solve = function(maxDepth) {
+	    var State, freeStates, moveNames, phase1, phase1search, phase2, phase2search, solution, state, x;
+	    if (maxDepth == null) {
+	      maxDepth = 22;
+	    }
+	    moveNames = (function() {
+	      var face, faceName, m, o, power, powerName, result;
+	      faceName = ['U', 'R', 'F', 'D', 'L', 'B'];
+	      powerName = ['', '2', "'"];
+	      result = [];
+	      for (face = m = 0; m <= 5; face = ++m) {
+	        for (power = o = 0; o <= 2; power = ++o) {
+	          result.push(faceName[face] + powerName[power]);
+	        }
+	      }
+	      return result;
+	    })();
+	    State = (function() {
+	      function State(cube) {
+	        this.parent = null;
+	        this.lastMove = null;
+	        this.depth = 0;
+	        if (cube) {
+	          this.init(cube);
+	        }
+	      }
+
+	      State.prototype.init = function(cube) {
+	        this.flip = cube.flip();
+	        this.twist = cube.twist();
+	        this.slice = cube.FRtoBR() / N_SLICE2 | 0;
+	        this.parity = cube.cornerParity();
+	        this.URFtoDLF = cube.URFtoDLF();
+	        this.FRtoBR = cube.FRtoBR();
+	        this.URtoUL = cube.URtoUL();
+	        this.UBtoDF = cube.UBtoDF();
+	        return this;
+	      };
+
+	      State.prototype.solution = function() {
+	        if (this.parent) {
+	          return this.parent.solution() + moveNames[this.lastMove] + ' ';
+	        } else {
+	          return '';
+	        }
+	      };
+
+	      State.prototype.move = function(table, index, move) {
+	        return Cube.moveTables[table][index][move];
+	      };
+
+	      State.prototype.pruning = function(table, index) {
+	        return pruning(Cube.pruningTables[table], index);
+	      };
+
+	      State.prototype.moves1 = function() {
+	        if (this.lastMove !== null) {
+	          return nextMoves1[this.lastMove / 3 | 0];
+	        } else {
+	          return allMoves1;
+	        }
+	      };
+
+	      State.prototype.minDist1 = function() {
+	        var d1, d2;
+	        d1 = this.pruning('sliceFlip', N_SLICE1 * this.flip + this.slice);
+	        d2 = this.pruning('sliceTwist', N_SLICE1 * this.twist + this.slice);
+	        return max(d1, d2);
+	      };
+
+	      State.prototype.next1 = function(move) {
+	        var next;
+	        next = freeStates.pop();
+	        next.parent = this;
+	        next.lastMove = move;
+	        next.depth = this.depth + 1;
+	        next.flip = this.move('flip', this.flip, move);
+	        next.twist = this.move('twist', this.twist, move);
+	        next.slice = this.move('FRtoBR', this.slice * 24, move) / 24 | 0;
+	        return next;
+	      };
+
+	      State.prototype.moves2 = function() {
+	        if (this.lastMove !== null) {
+	          return nextMoves2[this.lastMove / 3 | 0];
+	        } else {
+	          return allMoves2;
+	        }
+	      };
+
+	      State.prototype.minDist2 = function() {
+	        var d1, d2, index1, index2;
+	        index1 = (N_SLICE2 * this.URtoDF + this.FRtoBR) * N_PARITY + this.parity;
+	        d1 = this.pruning('sliceURtoDFParity', index1);
+	        index2 = (N_SLICE2 * this.URFtoDLF + this.FRtoBR) * N_PARITY + this.parity;
+	        d2 = this.pruning('sliceURFtoDLFParity', index2);
+	        return max(d1, d2);
+	      };
+
+	      State.prototype.init2 = function(top) {
+	        if (top == null) {
+	          top = true;
+	        }
+	        if (this.parent === null) {
+	          return;
+	        }
+	        this.parent.init2(false);
+	        this.URFtoDLF = this.move('URFtoDLF', this.parent.URFtoDLF, this.lastMove);
+	        this.FRtoBR = this.move('FRtoBR', this.parent.FRtoBR, this.lastMove);
+	        this.parity = this.move('parity', this.parent.parity, this.lastMove);
+	        this.URtoUL = this.move('URtoUL', this.parent.URtoUL, this.lastMove);
+	        this.UBtoDF = this.move('UBtoDF', this.parent.UBtoDF, this.lastMove);
+	        if (top) {
+	          return this.URtoDF = this.move('mergeURtoDF', this.URtoUL, this.UBtoDF);
+	        }
+	      };
+
+	      State.prototype.next2 = function(move) {
+	        var next;
+	        next = freeStates.pop();
+	        next.parent = this;
+	        next.lastMove = move;
+	        next.depth = this.depth + 1;
+	        next.URFtoDLF = this.move('URFtoDLF', this.URFtoDLF, move);
+	        next.FRtoBR = this.move('FRtoBR', this.FRtoBR, move);
+	        next.parity = this.move('parity', this.parity, move);
+	        next.URtoDF = this.move('URtoDF', this.URtoDF, move);
+	        return next;
+	      };
+
+	      return State;
+
+	    })();
+	    solution = null;
+	    phase1search = function(state) {
+	      var depth, m, ref2, results;
+	      depth = 0;
+	      results = [];
+	      for (depth = m = 1, ref2 = maxDepth; 1 <= ref2 ? m <= ref2 : m >= ref2; depth = 1 <= ref2 ? ++m : --m) {
+	        phase1(state, depth);
+	        if (solution !== null) {
+	          break;
+	        }
+	        results.push(depth++);
+	      }
+	      return results;
+	    };
+	    phase1 = function(state, depth) {
+	      var len, m, move, next, ref2, ref3, results;
+	      if (depth === 0) {
+	        if (state.minDist1() === 0) {
+	          if (state.lastMove === null || (ref2 = state.lastMove, indexOf.call(allMoves2, ref2) < 0)) {
+	            return phase2search(state);
+	          }
+	        }
+	      } else if (depth > 0) {
+	        if (state.minDist1() <= depth) {
+	          ref3 = state.moves1();
+	          results = [];
+	          for (m = 0, len = ref3.length; m < len; m++) {
+	            move = ref3[m];
+	            next = state.next1(move);
+	            phase1(next, depth - 1);
+	            freeStates.push(next);
+	            if (solution !== null) {
+	              break;
+	            } else {
+	              results.push(void 0);
+	            }
+	          }
+	          return results;
+	        }
+	      }
+	    };
+	    phase2search = function(state) {
+	      var depth, m, ref2, results;
+	      state.init2();
+	      results = [];
+	      for (depth = m = 1, ref2 = maxDepth - state.depth; 1 <= ref2 ? m <= ref2 : m >= ref2; depth = 1 <= ref2 ? ++m : --m) {
+	        phase2(state, depth);
+	        if (solution !== null) {
+	          break;
+	        }
+	        results.push(depth++);
+	      }
+	      return results;
+	    };
+	    phase2 = function(state, depth) {
+	      var len, m, move, next, ref2, results;
+	      if (depth === 0) {
+	        if (state.minDist2() === 0) {
+	          return solution = state.solution();
+	        }
+	      } else if (depth > 0) {
+	        if (state.minDist2() <= depth) {
+	          ref2 = state.moves2();
+	          results = [];
+	          for (m = 0, len = ref2.length; m < len; m++) {
+	            move = ref2[m];
+	            next = state.next2(move);
+	            phase2(next, depth - 1);
+	            freeStates.push(next);
+	            if (solution !== null) {
+	              break;
+	            } else {
+	              results.push(void 0);
+	            }
+	          }
+	          return results;
+	        }
+	      }
+	    };
+	    freeStates = (function() {
+	      var m, ref2, results;
+	      results = [];
+	      for (x = m = 0, ref2 = maxDepth + 1; 0 <= ref2 ? m <= ref2 : m >= ref2; x = 0 <= ref2 ? ++m : --m) {
+	        results.push(new State);
+	      }
+	      return results;
+	    })();
+	    state = freeStates.pop().init(this);
+	    phase1search(state);
+	    freeStates.push(state);
+	    if (solution.length > 0) {
+	      solution = solution.substring(0, solution.length - 1);
+	    }
+	    return solution;
+	  };
+
+	  Cube.scramble = function() {
+	    return Cube.inverse(Cube.random().solve());
+	  };
+
+	}).call(this);
+
+
+/***/ })
+/******/ ]);
